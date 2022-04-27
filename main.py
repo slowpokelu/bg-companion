@@ -6,11 +6,12 @@ from os import system, name
 import time
 import webbrowser
 
-from src.player import Player
+# from src.mtg.player import Player
 from src.mtg.collection import interactive_search
 from src.mtg.edh_powerlevel import get_powerlevel
 import src.rng as rng
 import src.clock
+import src.mtg.lifetracker as tracker
 
 version = "0.1_alpha_cli"
 
@@ -33,15 +34,32 @@ general_tools = {
 
 mtg_options = {
     0: "Magic the Gathering",
-    "l": ["Life Counter", ""], #TODO
+    "l": ["Life Counter", "tracker.start_tracking(); create_menu(tracking_options, f'{tracker.showhp()}')"],
     "r": ["RNG Menu", 'create_menu(rng_options)'],
 #    "3": ["Counters", ""],
-#     "e": ["External Resources", "create_menu(mtg_resources)"],
+#    "e": ["External Resources", "create_menu(mtg_resources)"],
     "c": ["Find cards in collection", "interactive_search(); create_menu(mtg_options)"],
     "p": ["Calculate EDH Powerlevel", "clear(); create_menu(mtg_options, f'Powerlevel: {str(get_powerlevel())}')"],
     "d": ["Deck Chooser", "create_menu(deck_choose_options)"],
 
     'b': 'start()',
+}
+
+def gethp():
+    return tracker.showhp()
+
+tracking_options = {
+    0: "Life Tracker",
+    #"s": ["Show HP of all players", "create_menu(tracking_options, f'{gethp()}')"],
+    "i": ["Increase HP of a player", "tracker.modify_hp('+');create_menu(tracking_options, f'{gethp()}')"],
+    "d": ["Decrease HP of a player", "tracker.modify_hp('-');create_menu(tracking_options, f'{gethp()}')"],
+    "ac": ["Add a counter to a player", ""],
+    "rc": ["Remove a counter from a player", ""],
+    "am": ["Add Mana to a player's mana pool", ""],
+    "rm": ["Remove Mana from a player's mana pool", ""],
+
+
+    "b": 'create_menu(mtg_options)',
 }
 
 deck_choose_options = {
@@ -84,6 +102,18 @@ boardgames = {
     
     'b': 'start()',
 }
+
+mtg_resources = {
+    0: "Magic Resources",
+    "1": ["Deckstats", "webbrowser.open('https://deckstats.net/')"],
+    "2": ["Moxfield", "webbrowser.open('https://www.moxfield.com/')"],
+    "3": ["Scryfall", "webbrowser.open('https://scryfall.com/')"],
+    "4": ["EDHREC", "webbrowser.open('https://edhrec.com/')"],
+    "5": ["cedh decklist database", "webbrowser.open('https://cedh-decklist-database.com/')"],
+    "6": ["Secret Lair EU", "webbrowser.open('https://secretlair.wizards.com/eu')"],
+
+    'b': 'create_menu(mtg_options)',
+}
 '''
 rng_options = {
     0: "Random Number Generator",
@@ -100,18 +130,6 @@ rng_options = {
     'b': 'start()',
 }
 
-mtg_resources = {
-    0: "Magic Resources",
-    "1": ["Deckstats", "webbrowser.open('https://deckstats.net/')"],
-    "2": ["Moxfield", "webbrowser.open('https://www.moxfield.com/')"],
-    "3": ["Scryfall", "webbrowser.open('https://scryfall.com/')"],
-    "4": ["EDHREC", "webbrowser.open('https://edhrec.com/')"],
-    "5": ["cedh decklist database", "webbrowser.open('https://cedh-decklist-database.com/')"],
-    "6": ["Secret Lair EU", "webbrowser.open('https://secretlair.wizards.com/eu')"],
-
-    'b': 'create_menu(mtg_options)',
-}
-
 link_options = {
     0: "Useful Links",
     "d": ["Deckstats", "webbrowser.open('https://deckstats.net/')"],
@@ -122,6 +140,8 @@ link_options = {
     "6": ["Secret Lair EU", "webbrowser.open('https://secretlair.wizards.com/eu')"],
     "7": ["D&D Beyond", "webbrowser.open('https://dndbeyond.com')"],
     "8": ["BoardGameGeek", "webbrowser.open('https://boardgamegeek.com/')"],
+    "9": ["MPCFill", "webbrowser.open('https://mpcfill.com/')"],
+    "10": ["MPC", "webbrowser.open('https://www.makeplayingcards.com/')"],
 
     'b': 'start()',
 }
@@ -213,12 +233,12 @@ def create_menu(collection, res=""):
                 '''
                 
                 # this requires keys to be strings
+                if choice == "0":
+                    start()
                 try:
                     exec(collection[choice][1])
                 except KeyError:
                     print("No valid input.")
-                if choice == "0":
-                    start()
             except ValueError:
                 print("Value Error.")
     

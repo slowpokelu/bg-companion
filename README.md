@@ -1,5 +1,5 @@
 # game-companion
-Useful tools for MtG, D&D, Shogi/Chess and other Boardgames
+Useful tools for MtG  (maybe later D&D, Shogi/Chess and other Boardgames)
 
 Requires Python 3.10
 
