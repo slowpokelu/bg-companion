@@ -2,7 +2,6 @@
 
 class Player():
     playerlist=[]
-    # Needs getters? or access via attributes?
     def __init__(self,
                  playername="",
                  startinglife=40,
@@ -80,6 +79,16 @@ class Player():
             print("Invalid mana type - please use c w u b r g")
         else:
             self.mana[manatype.lower()] -= amount
+
+    def clear_mana(self):
+        self.mana = {
+            "c": 0,
+            "w": 0,
+            "u": 0,
+            "b": 0,
+            "r": 0,
+            "g": 0,
+        }
 
 if __name__ == '__main__':
     pass

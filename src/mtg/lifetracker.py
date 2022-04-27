@@ -16,7 +16,7 @@ def init_players():
         no_players = 1
     
     print("Enter starting Hit Points")
-    starting_life = input("--> ") #TODO Can't be negative
+    starting_life = input("--> ")
     if starting_life == "":
         starting_life = 40
     starting_life = int(starting_life)
@@ -25,11 +25,10 @@ def init_players():
         starting_life=40
 
     for i in range(0, no_players):
-        # players[i+1] = Player(f"Player {i+1}", starting_life)
         players[i+1] = Player(playername=f"Player {i+1}", startinglife=starting_life)
 
 def tracking_repl():
-    # TODO - maybe as menu??
+    # TODO - maybe as menu in main.py??
     pass
 
 def start_tracking():
@@ -43,10 +42,9 @@ def showhp():
        
 
 def modify_hp(mode="+"):
-    # Implement damage by healing negative number? 
     '''
-    mode + is heal
-    mode - is damage
+    mode "+" is heal
+    mode "-" is damage
     '''
     maxplayer = len(players)
     print(f"Choose player: (1-{maxplayer})")
@@ -67,17 +65,6 @@ def modify_hp(mode="+"):
                 players[selected_player].increase_hp(amount)
             elif mode == "-":
                 players[selected_player].increase_hp(-amount)
-
-'''
-language in repl to add/remove hp, counters, mana etc...
-
-- 10 player1 # removes 10 hp from player1
-+ 14 player2 # adds 14 hp to player2
-
-+ counter commanderdamage 10 player1 # adds 1 commanderdamage counter to player1
-- counter poison 3 player2 # removes 1 poison counter from player2
-
-'''
 
 if __name__ == "__main__":
     pass
