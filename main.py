@@ -273,8 +273,8 @@ def get_random_deck(mode=0):
     '''
     res = []
 
-    edh_file = "src/mtg/collections/edh_decks"
-    cedh_file = "src/mtg/collections/cedh_decks"
+    edh_file = "src/mtg/collections/edh_decks.txt"
+    cedh_file = "src/mtg/collections/cedh_decks.txt"
 
     edh = open(edh_file)
     cedh = open(cedh_file)
@@ -320,6 +320,3 @@ def get_version():
 if __name__ == '__main__':
 
     start()
-
-    p1 = Player("Player 1")
-    p2 = Player("Player 2")
