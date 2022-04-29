@@ -1,0 +1,11 @@
+{{ define "main" }}
+	<main class="content" role="main">
+    {{ $pages := .Pages }}
+    {{ if .IsHome }}
+      {{ $pages = where .Site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ end }}
+   
+    <!-- main page here pag -->
+	
+	</main>
+{{ end }}

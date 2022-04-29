@@ -1,0 +1,31 @@
+baseURL: "https://slowpokelu.github.io/"
+languageCode: "en-us"
+title: "bg-companion-web"
+theme: "papermod"
+
+menu:
+  main:
+      - Name: "Lifetracker"
+        Pre: "<i class='fa fa-road'></i>"
+        Weight: -100
+        URL: "/tools/lifetracker/"
+      - Name: "RNG"
+        Pre: "<i class='fa fa-road'></i>"
+        Weight: -50
+        URL: "/tools/random/"
+      - Name: "Collection"
+        Pre: "<i class='fa fa-road'></i>"
+        Weight: -50
+        URL: "/tools/collection/"
+      - Name: "Decks"
+        Pre: "<i class='fa fa-road'></i>"
+        Weight: -50
+        URL: "/tools/decks/"
+      - Name: "Powerlevel"
+        Pre: "<i class='fa fa-road'></i>"
+        Weight: -50
+        URL: "/tools/powerlevel/"
+      - Name: "Resources"
+        Pre: "<i class='fa fa-road'></i>"
+        Weight: -50
+        URL: "/tools/resources/"

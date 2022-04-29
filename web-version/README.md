@@ -1,1 +1,0 @@
-# bg-companion-web

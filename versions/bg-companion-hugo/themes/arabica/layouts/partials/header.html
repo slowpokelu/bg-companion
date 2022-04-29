@@ -1,0 +1,29 @@
+<header class="main-header">
+	<div class="main-header-content">
+		<h1 class="blog-title">
+			<a href="{{ "/" | relLangURL }}">
+				{{ if .Site.Params.logoTitle }}
+					{{ .Site.Params.logoTitle | safeHTML }}
+				{{ else }}
+           {{ .Site.Title }}
+				{{ end }}
+			</a>
+			<span>
+				<button class="" 
+						style="background:transparent; border:none; color:transparent;" 
+						onclick="toggle_dark_white()">
+						<i class="gg-moon" id="switch-colors"></i>
+				</button>
+			</span>
+		</h1>
+		<h2 class="blog-description">{{ .Site.Params.description }}</h2>
+	</div>
+	<p style="color: skyblue">by <a href="https://github.com/slowpokelu" target="_blank">slowpokelu</a></p>
+
+	<div class="nav">
+    {{ $currentPage := . }}
+		{{ range .Site.Menus.main }}
+      <a class="nav- {{ if $currentPage.IsMenuCurrent "main" . }}nav-current{{ end }}" role="presentation" href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a>
+		{{ end }}
+	</div>
+</header>
